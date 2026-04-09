@@ -48,11 +48,14 @@ public class UserController {
         users.add(userDTO3);
     }
 
-
-
     @GetMapping("/")
     public String getMessage() {
         return "Spring Boot is working";
+    }
+
+    @GetMapping
+    public List<UserDTO> getUsers() {
+        return users;
     }
 
 }
