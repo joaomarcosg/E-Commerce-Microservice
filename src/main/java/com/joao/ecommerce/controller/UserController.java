@@ -3,6 +3,7 @@ package com.joao.ecommerce.controller;
 import com.joao.ecommerce.dto.UserDTO;
 import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,6 +52,15 @@ public class UserController {
     @GetMapping("/")
     public String getMessage() {
         return "Spring Boot is working";
+    }
+
+    @GetMapping("/{cpf}")
+    public UserDTO getUserByCpf(@PathVariable String cpf) {
+        return users
+                .stream()
+                .filter(userDTO -> userDTO.getCpf().equals(cpf))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @GetMapping
