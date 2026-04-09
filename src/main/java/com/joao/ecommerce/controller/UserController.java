@@ -2,10 +2,8 @@ package com.joao.ecommerce.controller;
 
 import com.joao.ecommerce.dto.UserDTO;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -66,6 +64,14 @@ public class UserController {
     @GetMapping
     public List<UserDTO> getUsers() {
         return users;
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDTO createUser(@RequestBody UserDTO userDTO) {
+        userDTO.setRegistrationDate(LocalDateTime.now());
+        users.add(userDTO);
+        return userDTO;
     }
 
 }
