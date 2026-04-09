@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class UserDTO {
     private String name;
     private String cpf;
-    private String address
+    private String address;
     private String email;
     private String phone;
     private LocalDateTime registrationDate;
