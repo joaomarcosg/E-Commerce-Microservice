@@ -75,4 +75,9 @@ public class UserController {
         return userDTO;
     }
 
+    @DeleteMapping("/{cpf}")
+    public boolean deleteUser(@PathVariable String cpf) {
+        return users.removeIf(userDTO -> userDTO.getCpf().equals(cpf));
+    }
+
 }
