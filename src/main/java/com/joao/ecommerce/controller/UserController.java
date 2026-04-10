@@ -2,6 +2,7 @@ package com.joao.ecommerce.controller;
 
 import com.joao.ecommerce.dto.UserDTO;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,7 +69,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO createUser(@RequestBody UserDTO userDTO) {
+    public UserDTO createUser(@RequestBody @Valid UserDTO userDTO) {
         userDTO.setRegistrationDate(LocalDateTime.now());
         users.add(userDTO);
         return userDTO;
